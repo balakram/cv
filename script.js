@@ -2,33 +2,40 @@ document.addEventListener("DOMContentLoaded", function () {
     const themeToggle = document.getElementById("theme-toggle");
     const body = document.body;
 
+    // Function to update theme icon
+    function updateThemeIcon() {
+        if (body.classList.contains("dark-mode")) {
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+    }
+
     // Check local storage for theme preference
     if (localStorage.getItem("theme") === "dark") {
         body.classList.add("dark-mode");
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
     }
 
+    // Update theme icon on page load
+    updateThemeIcon();
+
+    // Theme Toggle Event
     themeToggle.addEventListener("click", () => {
         body.classList.toggle("dark-mode");
-
-        if (body.classList.contains("dark-mode")) {
-            localStorage.setItem("theme", "dark");
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-            localStorage.setItem("theme", "light");
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        }
+        localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+        updateThemeIcon();
     });
-});
 
-
-
-// Sidebar Toggle (Only for Mobile)
+    // Sidebar Toggle (Only for Mobile)
 const menuToggle = document.querySelector(".menu-toggle");
 const sidebar = document.querySelector(".sidebar");
 
-// Ensure the menu button only works in mobile view
-menuToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("active");
-    menuToggle.classList.toggle("active");
+if (menuToggle && sidebar) {
+    menuToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("active");
+        menuToggle.classList.toggle("active");
+    });
+}
+
 });
+
