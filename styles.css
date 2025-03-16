@@ -531,16 +531,34 @@ h2 {
     transform: scale(1.1);
 }
 
-/* Circular Text */
+/* Circular Text *
 .circular-text {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     fill: white;
     font-size: 8px;
     font-weight: bold;
     text-transform: uppercase;
+    transition: fill 0.3s ease-in-out;
+}*/
+
+/* Default Dark Mode (White Text) */
+.circular-text textPath {
+    fill: white; /* Dark mode default */
+    font-size: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: fill 0.3s ease-in-out;
 }
+
+/* Light Mode Fix */
+body.light-mode .circular-text textPath {
+    fill: black !important; /* Ensures color changes correctly */
+}
+
+
 
 /* Light Mode Adjustments */
 .light-mode {
@@ -567,8 +585,4 @@ h2 {
 
 .light-mode .floating-download-btn:hover {
     background: #003f5e;
-}
-
-.light-mode .circular-text {
-    fill: #333;
 }
